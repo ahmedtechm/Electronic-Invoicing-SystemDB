@@ -3,8 +3,12 @@ package InvoicingSystemDB;
 public class ItemDB {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		int itemID;
+		String itemName;
+		float  itemPrice;
+		int itemQuantity;
+		float  qtyAmountPrice;
 	}
 
 }
