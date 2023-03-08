@@ -28,7 +28,7 @@ public class ShopMainClassDB {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-            	// Shop Settings
+            	// Shop Settings Menu
             	System.out.println("1. Load Data (Items and invoices)");
                 System.out.println("2. Set Shop Name");
                 System.out.println("3. Set Invoice Header");
@@ -57,6 +57,13 @@ public class ShopMainClassDB {
                 }
                 break;
             case 2:
+            	//Manage Shop Items Menu
+            	System.out.println("1. Add Items");
+                System.out.println("2. Delete Items");
+                System.out.println("3. Change Item Price");
+                System.out.println("4. Report All Items");
+                System.out.println("5. Go Back");
+                System.out.print("Enter your choice: ");
                 
                 subChoice = scanner.nextInt();
                 switch (subChoice) {
