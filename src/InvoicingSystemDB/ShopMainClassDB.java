@@ -9,7 +9,8 @@ public class ShopMainClassDB {
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
 		
-		
+		 boolean exit = false;
+	        while (!exit) {
     	// Application Main Menu 
 		
     	System.out.println("⫸⫸⫸⫸⫸⫸⫸⫸👉 Welcome to Groceries Shop System 👈⫷⫷⫷⫷⫷⫷⫷⫷");
@@ -22,12 +23,92 @@ public class ShopMainClassDB {
         System.out.println("7- Program Statistics");
         System.out.println("8- Exit");
         System.out.print("Enter your choice: ");
+        
+        
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+            	// Shop Settings
 
+                int subChoice = scanner.nextInt();
+                switch (subChoice) {
+                    case 1:
+                    	 // Load Data (Items and invoices)
+                        
+                        break;
+                       
+                    case 2:
+                        // Set Shop Name 
+                        
+                        break;
+                    case 3:
+                    	 // Set Invoice Header
+                        
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid number.");
+                }
+                break;
+            case 2:
+                
+                subChoice = scanner.nextInt();
+                switch (subChoice) {
+                    case 1:
+                    	// Add Items
+                    	
+                        break;
+                    case 2:
+                    	 // Delete Items
+                       
+                        break;
+                    case 3:
+                        // Change Item Price
+                        
+                    	break;
+                    case 4:
+                        // Report All Items
+                       
+                    	break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid number.");
+                }
+                break;
+            case 3:
+                // Create New Invoice
+
+                break;
+            case 4:
+                // Report: Statistics
+            	
+                break;
+            case 5:
+                // Report: All Invoices
+            	
+                break;
+            case 6:
+                // Search (1) Invoice
+            	
+                break;
+            case 7:
+                // Program Statistics
+            	
+                break;
+            case 8:
+                System.out.print("Are you sure you want to exit? (yes/no): ");
+                String confirm = scanner.next();
+                if (confirm.equalsIgnoreCase("yes")) {
+                    exit = true;
+                }
+                break;
+            default:
+                System.out.println("Invalid choice. Please enter a valid number.");
+        }
+     }      
         
-        
-        
-        
-        
-	}
+  }
 
 }
