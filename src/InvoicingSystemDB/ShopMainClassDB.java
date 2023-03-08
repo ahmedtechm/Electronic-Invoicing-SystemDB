@@ -1,8 +1,13 @@
 package InvoicingSystemDB;
 
+import java.util.Scanner;
+
 public class ShopMainClassDB {
 
 	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in).useDelimiter("\n");
+		Scanner scanner = new Scanner(System.in);
 		
 		
     	// Application Main Menu 
@@ -18,6 +23,11 @@ public class ShopMainClassDB {
         System.out.println("8- Exit");
         System.out.print("Enter your choice: ");
 
+        
+        
+        
+        
+        
 	}
 
 }
