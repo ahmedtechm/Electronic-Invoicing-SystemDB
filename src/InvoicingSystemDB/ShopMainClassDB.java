@@ -22,13 +22,18 @@ public class ShopMainClassDB {
         System.out.println("6- Search (1) Invoice");
         System.out.println("7- Program Statistics");
         System.out.println("8- Exit");
-        System.out.print("Enter your choice: ");
+        System.out.print  ("Enter your choice: ");
         
         
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
             	// Shop Settings
+            	System.out.println("1. Load Data (Items and invoices)");
+                System.out.println("2. Set Shop Name");
+                System.out.println("3. Set Invoice Header");
+                System.out.println("4. Go Back");
+                System.out.print  ("Enter your choice: ");
 
                 int subChoice = scanner.nextInt();
                 switch (subChoice) {
