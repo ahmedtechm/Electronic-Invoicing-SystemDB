@@ -9,6 +9,8 @@ public class ItemDB {
 		float  itemPrice;
 		int itemQuantity;
 		float  qtyAmountPrice;
+		
+		
 		public int getItemID() {
 			return itemID;
 		}

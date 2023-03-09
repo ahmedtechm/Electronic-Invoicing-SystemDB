@@ -2,6 +2,9 @@ package InvoicingSystemDB;
 
 
 import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Scanner;
 
 
@@ -17,20 +20,32 @@ public class ShopMainClassDB {
        String user = "sa";
        String pass = "root";
      
-      Connection connection = null;
-		
-		
-		InvoiceDB invoiceobj= new InvoiceDB();
-		
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
 		
-		 boolean exit = false;
+		System.out.print("Enter User ID : ");
+		String userID = scanner.nextLine();
+		System.out.print("Enter User password : ");
+		String passID = scanner.nextLine();
+		
+	      Connection connection = null;
+		
+	      boolean exit = false;
+
+	      try {
+				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+				DriverManager.registerDriver(driver);
+				connection = DriverManager.getConnection(url, user, pass);
+				Statement statement = connection.createStatement();
+	    
+				//InvoiceDB invoiceobj= new InvoiceDB();
+				
 	        while (!exit) {
     	// Application Main Menu 
 		
     	System.out.println("⫸⫸⫸⫸⫸⫸⫸⫸👉 Welcome to Groceries Shop System 👈⫷⫷⫷⫷⫷⫷⫷⫷");
-        System.out.println("\n1- Shop Settings");
+        
+    	System.out.println("\n1- Shop Settings");
         System.out.println("2- Manage Shop Items");
         System.out.println("3- Create New Invoice");
         System.out.println("4- Report: Statistics");
@@ -39,6 +54,10 @@ public class ShopMainClassDB {
         System.out.println("7- Program Statistics");
         System.out.println("8- Exit");
         System.out.print  ("Enter your choice: ");
+	        }
+	        }catch (Exception ex) {
+	    		System.err.println(ex);
+	    	}
         
         
         int choice = scanner.nextInt();
@@ -125,6 +144,8 @@ public class ShopMainClassDB {
                 // Program Statistics
             	
                 break;
+                
+                
             case 8:
                 System.out.print("Are you sure you want to exit? (yes/no): ");
                 String confirm = scanner.next();
@@ -132,11 +153,15 @@ public class ShopMainClassDB {
                     exit = true;
                 }
                 break;
+                
             default:
                 System.out.println("Invalid choice. Please enter a valid number.");
+                
+                
         }
-     }      
+     }
         
+	   
   }
 
 }
