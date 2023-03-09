@@ -6,4 +6,5 @@
  *
  */
 module GroceriesShopSystemDB {
+	requires java.sql;
 }

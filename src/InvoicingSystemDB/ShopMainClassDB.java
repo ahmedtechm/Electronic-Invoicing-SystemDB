@@ -1,11 +1,23 @@
 package InvoicingSystemDB;
 
+
+import java.sql.Connection;
 import java.util.Scanner;
 
 
 public class ShopMainClassDB {
 
 	public static void main(String[] args) {
+		
+		String url = "jdbc:sqlserver://localhost:1433;" 
+				   + "databaseName=InvoicingDB;" 
+				   + "encrypt=true;" 
+				   + "trustServerCertificate=true";
+		
+       String user = "sa";
+       String pass = "root";
+     
+      Connection connection = null;
 		
 		
 		InvoiceDB invoiceobj= new InvoiceDB();
