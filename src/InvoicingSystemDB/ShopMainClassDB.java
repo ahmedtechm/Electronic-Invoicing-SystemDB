@@ -2,9 +2,13 @@ package InvoicingSystemDB;
 
 import java.util.Scanner;
 
+
 public class ShopMainClassDB {
 
 	public static void main(String[] args) {
+		
+		
+		InvoiceDB invoiceobj= new InvoiceDB();
 		
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);

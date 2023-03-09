@@ -1,5 +1,7 @@
 package InvoicingSystemDB;
 
+
+
 public class InvoiceDB {
 		
 		private String customerFullName;
@@ -11,7 +13,7 @@ public class InvoiceDB {
 		private float balance;
 		
 		
-		
+		ShopDB shopobj = new ShopDB();
 		
 		
 		public String getCustomerFullName() {
@@ -57,7 +59,4 @@ public class InvoiceDB {
 			this.balance = balance;
 		}
 		
-		
-	
-
 }

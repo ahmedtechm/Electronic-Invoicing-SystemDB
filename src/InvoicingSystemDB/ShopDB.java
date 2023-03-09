@@ -1,5 +1,6 @@
 package InvoicingSystemDB;
 
+
 public class ShopDB {
 
 
@@ -10,7 +11,7 @@ public class ShopDB {
 		String webSite;
 		
 		
-		
+		ItemDB itemobj = new ItemDB();
 		
 		
 		public String getShopName() {
