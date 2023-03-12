@@ -4,11 +4,11 @@ public class ItemDB {
 
 
 
-		int itemID;
-		String itemName;
-		float  itemPrice;
-		int itemQuantity;
-		float  qtyAmountPrice;
+	private int itemID;
+	private String itemName;
+	private float  itemPrice;
+	private int itemQuantity;
+	private float  qtyAmountPrice;
 		
 		
 		public int getItemID() {

@@ -24,12 +24,12 @@ public class ShopMainClassDB {
 		ArrayList <ItemDB> itemList=new ArrayList<ItemDB>();
 
      
-		Scanner scan = new Scanner(System.in).useDelimiter("\n");
+		Scanner   scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("Enter User ID : ");
+		System.out.println("Enter User ID : ");
 		String userID = scanner.nextLine();
-		System.out.print("Enter User password : ");
+		System.out.println("Enter User password : ");
 		String passID = scanner.nextLine();
 		
 	      Connection connection = null;
@@ -52,8 +52,10 @@ public class ShopMainClassDB {
     	// Application Main Menu 
 		
     	System.out.println("\n⫸⫸⫸⫸⫸⫸⫸⫸👉 Welcome to Groceries Shop System 👈⫷⫷⫷⫷⫷⫷⫷⫷");
-        
-    	System.out.println("\n1- Shop Settings");
+    	
+    	
+    	System.out.println("\n0- Create Tables");
+    	System.out.println("1- Shop Settings");
         System.out.println("2- Manage Shop Items");
         System.out.println("3- Create New Invoice");
         System.out.println("4- Report: Statistics");
@@ -67,9 +69,41 @@ public class ShopMainClassDB {
         
         int choice = scanner.nextInt();
         switch (choice) {
-            case 1:
+          
+        
+        case 0:
+			String Item = "CREATE TABLE Item (" +
+					"itemID INTEGER Primary Key, " +
+					" itemName TEXT, " +
+					" itemPrice FLOAT , " +
+					"itemQuantity INTEGER, " +
+					"qtyAmountPrice FLOAT  "+")";
+
+			
+			String Shop = "CREATE TABLE Shop (" +
+					" telephone INTEGER, " +
+					" fax TEXT, " +
+					"email TEXT, " +
+					"webSite TEXT, " +
+					"shopName TEXT "+")";
+
+			
+			String Invoice = "CREATE TABLE Invoice (" +
+					" invoiceDate INTEGER, " +
+					" customerFullName TEXT, " +
+					"phoneNumber INTEGER, " +
+					"numberOfItem INTEGER, " +
+					"totalAmount FLOAT , " +
+			        "paidAmount FLOAT , " +
+			        "balance FLOAT "+")";
+			
+			
+		        System.out.println("\nexecute completed ");
+
+           
+        case 1:
             	// Shop Settings Menu
-            	System.out.println("1. Load Data (Items and invoices)");
+            	System.out.println("\n1. Load Data (Items and invoices)");
                 System.out.println("2. Set Shop Name");
                 System.out.println("3. Set Invoice Header");
                 System.out.println("4. Go Back");
@@ -90,6 +124,7 @@ public class ShopMainClassDB {
         				invoiceobj.shopobj.setShopName(shopName);
                         
                         System.out.println("Shop name saved : " + shopName);
+                        
                         
                         break;
                     case 3:

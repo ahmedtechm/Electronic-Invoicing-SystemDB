@@ -4,11 +4,12 @@ package InvoicingSystemDB;
 public class ShopDB {
 
 
-		String shopName;
-		int telephone; 
-		String fax;
-		String email;
-		String webSite;
+	private	String shopName;
+	private int telephone; 
+	private	String fax;
+	private	String email;
+	private	String webSite;
+	
 		
 		
 		ItemDB itemobj = new ItemDB();
