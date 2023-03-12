@@ -42,7 +42,7 @@ public class ShopMainClassDB {
 		    		System.err.println(ex);
 		  }
 	        
-				//InvoiceDB invoiceobj= new InvoiceDB();
+				InvoiceDB invoiceobj= new InvoiceDB();
 				
 	        while (!exit) {
     	// Application Main Menu 
@@ -80,6 +80,12 @@ public class ShopMainClassDB {
                        
                     case 2:
                         // Set Shop Name 
+                    	
+                    	System.out.println("Enter shop name:");
+        				String shopName = scan.next();
+        				invoiceobj.shopobj.setShopName(shopName);
+                        
+                        System.out.println("Shop name saved : " + shopName);
                         
                         break;
                     case 3:
@@ -105,6 +111,7 @@ public class ShopMainClassDB {
                 switch (subChoice) {
                     case 1:
                     	// Add Items
+                    	
                     	
                         break;
                     case 2:
