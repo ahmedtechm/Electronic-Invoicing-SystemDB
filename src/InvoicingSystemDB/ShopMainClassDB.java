@@ -90,6 +90,27 @@ public class ShopMainClassDB {
                         break;
                     case 3:
                     	 // Set Invoice Header
+                    	
+                        System.out.print("Enter telephone number: ");
+                        Integer telephone = scanner.nextInt();	              
+        				invoiceobj.shopobj.setTelephone(telephone);                                                     
+                        
+        				System.out.print("Enter fax number: ");
+                        String fax = scanner.next();
+                        invoiceobj.shopobj.setFax(fax);	                                                      
+                        
+                        System.out.print("Enter new email Id: ");
+                        String email = scanner.next();
+                        invoiceobj.shopobj.setEmail(email);	                       
+                        
+                        System.out.print("Enter webSite: ");
+                        String webSite = scanner.next();
+                        invoiceobj.shopobj.setWebSite(webSite);
+
+                        System.out.println("Invoice telephone saved : " + telephone);
+                        System.out.println("Invoice fax saved : " + fax);
+                        System.out.println("Invoice email saved : " + email);
+                        System.out.println("Invoice webSite saved: " + webSite);
                         
                         break;
                     case 4:
