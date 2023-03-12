@@ -17,8 +17,8 @@ public class ShopMainClassDB {
 				   + "encrypt=true;" 
 				   + "trustServerCertificate=true";
 		
-       String user = "sa";
-       String pass = "root";
+        String user = "sa";
+        String pass = "root";
      
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
@@ -37,13 +37,17 @@ public class ShopMainClassDB {
 				DriverManager.registerDriver(driver);
 				connection = DriverManager.getConnection(url, user, pass);
 				Statement statement = connection.createStatement();
-	    
+	        
+	      }catch (Exception ex) {
+		    		System.err.println(ex);
+		  }
+	        
 				//InvoiceDB invoiceobj= new InvoiceDB();
 				
 	        while (!exit) {
     	// Application Main Menu 
 		
-    	System.out.println("⫸⫸⫸⫸⫸⫸⫸⫸👉 Welcome to Groceries Shop System 👈⫷⫷⫷⫷⫷⫷⫷⫷");
+    	System.out.println("\n⫸⫸⫸⫸⫸⫸⫸⫸👉 Welcome to Groceries Shop System 👈⫷⫷⫷⫷⫷⫷⫷⫷");
         
     	System.out.println("\n1- Shop Settings");
         System.out.println("2- Manage Shop Items");
@@ -53,12 +57,9 @@ public class ShopMainClassDB {
         System.out.println("6- Search (1) Invoice");
         System.out.println("7- Program Statistics");
         System.out.println("8- Exit");
-        System.out.print  ("Enter your choice: ");
-	        }
-	        }catch (Exception ex) {
-	    		System.err.println(ex);
-	    	}
-        
+        System.out.print  ("\nEnter your choice: ");
+	     
+	
         
         int choice = scanner.nextInt();
         switch (choice) {
@@ -162,6 +163,9 @@ public class ShopMainClassDB {
      }
         
 	   
-  }
+	}}
 
-}
+
+
+
+
