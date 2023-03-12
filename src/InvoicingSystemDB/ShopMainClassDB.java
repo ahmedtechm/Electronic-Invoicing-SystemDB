@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 
 public class ShopMainClassDB {
@@ -19,6 +21,9 @@ public class ShopMainClassDB {
 		
         String user = "sa";
         String pass = "root";
+        
+		ArrayList <ItemDB> itemList=new ArrayList<ItemDB>();
+
      
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
@@ -132,6 +137,30 @@ public class ShopMainClassDB {
                 switch (subChoice) {
                     case 1:
                     	// Add Items
+                    	
+                    	ItemDB itemobj = new ItemDB();
+                    	
+                    	System.out.print("Enter item ID: ");
+                    	Integer itemID = scanner.nextInt();
+                        invoiceobj.shopobj.itemobj.setItemID(itemID);
+                    	                                              	
+                        System.out.print("Enter item name: ");
+                        String itemName = scanner.next();
+                        invoiceobj.shopobj.itemobj.setItemName(itemName);
+                        
+                        System.out.print("Enter item price: ");
+                        float itemPrice = scanner.nextFloat();
+                        invoiceobj.shopobj.itemobj.setItemPrice(itemPrice);
+                        
+                        System.out.print("Enter Item Quantity: ");
+                    	Integer itemQuantity = scanner.nextInt();
+                        invoiceobj.shopobj.itemobj.setItemQuantity(itemQuantity);
+                        
+                        System.out.print("Enter qty Amount Price: ");
+                        float qtyAmountPrice = scanner.nextFloat();
+                        invoiceobj.shopobj.itemobj.setQtyAmountPrice(qtyAmountPrice);
+                        
+                        itemList.add(itemobj);
                     	
                     	
                         break;
