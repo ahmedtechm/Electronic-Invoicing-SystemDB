@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
 public class ShopMainClassDB {
 
 	public static void main(String[] args) {
@@ -184,6 +183,35 @@ public class ShopMainClassDB {
                 break;
             case 3:
                 // Create New Invoice
+
+            	System.out.print("Enter Customer Full Name : ");
+                String customerFullName = scan.next();
+                invoiceobj.setCustomerFullName(customerFullName);
+                
+                System.out.print("Enter Customer Phone Number : ");
+            	Integer phoneNumber = scanner.nextInt();
+                invoiceobj.setPhoneNumber(phoneNumber);
+                
+                System.out.print("Enter Invoice Date : ");
+            	Integer invoiceDate = scanner.nextInt();
+                invoiceobj.setInvoiceDate(invoiceDate);
+                
+                System.out.print("Enter Number of Item : ");
+            	Integer numberOfItem = scanner.nextInt();
+                invoiceobj.setNumberOfItem(numberOfItem);
+                
+                System.out.print("Enter Total Amount : ");
+                float totalAmount = scanner.nextFloat();
+                invoiceobj.setTotalAmount(totalAmount);
+                
+                System.out.print("Enter Paid Amount : ");
+                float paidAmount = scanner.nextFloat();
+                invoiceobj.setPaidAmount(paidAmount);
+                
+                System.out.print("Enter Balance : ");
+                float balance = scanner.nextFloat();
+                invoiceobj.setBalance(balance);
+            	
 
                 break;
             case 4:
