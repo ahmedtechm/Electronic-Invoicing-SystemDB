@@ -18,8 +18,8 @@ public class ShopMainClassDB {
 				   + "encrypt=true;" 
 				   + "trustServerCertificate=true";
 		
-        String user = "sa";
-        String pass = "root";
+        //String user = "sa";
+        //String pass = "root";
         
 		ArrayList <ItemDB> itemList=new ArrayList<ItemDB>();
 
@@ -35,17 +35,7 @@ public class ShopMainClassDB {
 	      Connection connection = null;
 		
 	      boolean exit = false;
-
-	      try {
-				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-				DriverManager.registerDriver(driver);
-				connection = DriverManager.getConnection(url, user, pass);
-				Statement statement = connection.createStatement();
-	        
-	      }catch (Exception ex) {
-		    		System.err.println(ex);
-		  }
-	        
+        
 				InvoiceDB invoiceobj= new InvoiceDB();
 				
 	        while (!exit) {
@@ -72,33 +62,48 @@ public class ShopMainClassDB {
           
         
         case 0:
+  	      try {
+  				Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+  				DriverManager.registerDriver(driver);
+  				connection = DriverManager.getConnection(url, userID, passID);
+  				Statement statement = connection.createStatement();
+  	        
+  	
 			String Item = "CREATE TABLE Item (" +
-					"itemID INTEGER Primary Key, " +
-					" itemName TEXT, " +
+					"itemID INT PRIMARY KEY, " +
+					" itemName VARCHAR(255), " +
 					" itemPrice FLOAT , " +
-					"itemQuantity INTEGER, " +
+					"itemQuantity INT, " +
 					"qtyAmountPrice FLOAT  "+")";
-
 			
-			String Shop = "CREATE TABLE Shop (" +
-					" telephone INTEGER, " +
-					" fax TEXT, " +
-					"email TEXT, " +
-					"webSite TEXT, " +
-					"shopName TEXT "+")";
+			statement.executeUpdate(Item);
 
+			String Shop = "CREATE TABLE Shop (" +
+					" telephone INT, " +
+					" fax VARCHAR(255), " +
+					"email VARCHAR(255), " +
+					"webSite VARCHAR(255), " +
+					"shopName VARCHAR(255) "+")";
+
+			statement.executeUpdate(Shop);
 			
 			String Invoice = "CREATE TABLE Invoice (" +
-					" invoiceDate INTEGER, " +
-					" customerFullName TEXT, " +
-					"phoneNumber INTEGER, " +
-					"numberOfItem INTEGER, " +
+					" invoiceDate int, " +
+					" customerFullName VARCHAR(255), " +
+					"phoneNumber INT, " +
+					"numberOfItem INT, " +
 					"totalAmount FLOAT , " +
 			        "paidAmount FLOAT , " +
 			        "balance FLOAT "+")";
 			
+			statement.executeUpdate(Invoice);
+			
 			
 		        System.out.println("\nexecute completed ");
+		        
+  	    }catch (Exception ex) {
+	    		System.err.println(ex);
+	  }
 
            
         case 1:
@@ -113,6 +118,7 @@ public class ShopMainClassDB {
                 switch (subChoice) {
                     case 1:
                     	 // Load Data (Items and invoices)
+                    	System.out.println("Loading data...");
                         
                         break;
                        
