@@ -64,18 +64,18 @@ public class ShopMainClassDB {
 					String Item = "CREATE TABLE Item (" + "itemID INT PRIMARY KEY, " + " itemName VARCHAR(255), "
 							+ " itemPrice FLOAT , " + "itemQuantity INT, " + "qtyAmountPrice FLOAT  " + ")";
 
-					statement.executeUpdate(Item);
+					//statement.executeUpdate(Item);
 
 					String Shop = "CREATE TABLE Shop (" + " telephone INT, " + " fax VARCHAR(255), "
 							+ "email VARCHAR(255), " + "webSite VARCHAR(255), " + "shopName VARCHAR(255) " + ")";
 
-					statement.executeUpdate(Shop);
+					//statement.executeUpdate(Shop);
 
 					String Invoice = "CREATE TABLE Invoice (" + " invoiceDate int, "
 							+ " customerFullName VARCHAR(255), " + "phoneNumber INT, " + "numberOfItem INT, "
 							+ "totalAmount FLOAT , " + "paidAmount FLOAT , " + "balance FLOAT " + ")";
 
-				statement.executeUpdate(Invoice);
+				//statement.executeUpdate(Invoice);
 
 					System.out.println("\nexecute completed ");
 
@@ -179,7 +179,7 @@ public class ShopMainClassDB {
 				switch (subChoice) {
 				case 1:
 					// Add Items
-
+					try {
 					ItemDB itemobj = new ItemDB();
 
 					System.out.print("Enter item ID: ");
@@ -187,7 +187,7 @@ public class ShopMainClassDB {
 					invoiceobj.shopobj.itemobj.setItemID(itemID);
 
 					System.out.print("Enter item name: ");
-					String itemName = scanner.next();
+					String itemName = scan.next();
 					invoiceobj.shopobj.itemobj.setItemName(itemName);
 
 					System.out.print("Enter item price: ");
@@ -203,6 +203,28 @@ public class ShopMainClassDB {
 					invoiceobj.shopobj.itemobj.setQtyAmountPrice(qtyAmountPrice);
 
 					itemList.add(itemobj);
+					
+					System.out.println("item ID saved : " + itemID);
+					System.out.println("item name saved : " + itemName);
+					System.out.println("item price saved : " + itemPrice);
+					System.out.println("Item Quantity saved: " + itemQuantity);
+					System.out.println("Item qty Amount Price saved: " + qtyAmountPrice);
+					
+					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+		        	DriverManager.registerDriver(driver);
+		        	connection = DriverManager.getConnection(url, userID, passID);
+		        	 Statement statement = connection.createStatement();
+		        
+
+					String sql1= "INSERT INTO Item (itemID, itemName, itemPrice, itemQuantity, qtyAmountPrice) "+ 
+							"VALUES('" + itemID + "','" + itemName + "','" + itemPrice + "','" + itemQuantity + "','" + qtyAmountPrice + "')";
+				
+					  statement.executeUpdate(sql1);
+					  
+					  System.out.println("saved successfully...");
+					}catch (Exception e) {
+						// TODO: handle exception
+					}
 
 					break;
 				case 2:
