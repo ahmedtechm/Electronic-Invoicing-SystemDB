@@ -143,7 +143,7 @@ public class ShopMainClassDB {
 
 						String sql = "INSERT INTO Shop (shopName, telephone, fax, email, webSite) " +
 
-								"VALUES (" + "'" + shopName1 + "','" + telephone + "','" + fax + "','" + email + "','"
+								"VALUES (" + "'" + shopName1 + "'," + telephone + "," + fax + ",'" + email + "','"
 								+ webSite + "')";
 
 						statement.executeUpdate(sql);
@@ -212,8 +212,8 @@ public class ShopMainClassDB {
 						Statement statement = connection.createStatement();
 
 						String sql1 = "INSERT INTO Item (itemID, itemName, itemPrice, itemQuantity, qtyAmountPrice) "
-								+ "VALUES('" + itemID + "','" + itemName + "','" + itemPrice + "','" + itemQuantity
-								+ "','" + qtyAmountPrice + "')";
+								+ "VALUES(" + itemID + ",'" + itemName + "'," + itemPrice + "," + itemQuantity
+								+ "," + qtyAmountPrice + ")";
 
 						statement.executeUpdate(sql1);
 
@@ -289,8 +289,8 @@ public class ShopMainClassDB {
 					Statement statement = connection.createStatement();
 
 					String sqlInvoice = "INSERT INTO Invoice (invoiceDate, customerFullName, phoneNumber, numberOfItem, totalAmount, paidAmount, balance)"
-							+ "VALUES ('" + invoiceDate + "','" + customerFullName + "','" + phoneNumber + "','"
-							+ numberOfItem + "','" + totalAmount + paidAmount + "','" + balance + "')";
+							+ "VALUES (" + invoiceDate + ",'" + customerFullName + "'," + phoneNumber + ","
+							+ numberOfItem + "," + totalAmount +"," + paidAmount + "," + balance + ")";
 					
 					statement.executeUpdate(sqlInvoice);
 
