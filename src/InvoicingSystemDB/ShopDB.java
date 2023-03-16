@@ -1,52 +1,53 @@
 package InvoicingSystemDB;
 
-
 public class ShopDB {
 
+	private String shopName;
+	private int telephone;
+	private String fax;
+	private String email;
+	private String webSite;
 
-	private	String shopName;
-	private int telephone; 
-	private	String fax;
-	private	String email;
-	private	String webSite;
-	
-		
-		
-		ItemDB itemobj = new ItemDB();
-		
-		
-		public String getShopName() {
-			return shopName;
-		}
-		public void setShopName(String shopName) {
-			this.shopName = shopName;
-		}
-		public int getTelephone() {
-			return telephone;
-		}
-		public void setTelephone(int telephone) {
-			this.telephone = telephone;
-		}
-		public String getFax() {
-			return fax;
-		}
-		public void setFax(String fax) {
-			this.fax = fax;
-		}
-		public String getEmail() {
-			return email;
-		}
-		public void setEmail(String email) {
-			this.email = email;
-		}
-		public String getWebSite() {
-			return webSite;
-		}
-		public void setWebSite(String webSite) {
-			this.webSite = webSite;
-		}
-	
+	ItemDB itemobj = new ItemDB();
 
-		
-		
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+
+	public int getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getWebSite() {
+		return webSite;
+	}
+
+	public void setWebSite(String webSite) {
+		this.webSite = webSite;
+	}
+
 }
