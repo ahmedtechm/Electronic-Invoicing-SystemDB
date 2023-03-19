@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -282,7 +283,33 @@ public class ShopMainClassDB {
 					break;
 				case 4:
 					// Report All Items
+					try {
+					connection = DriverManager.getConnection(url, userID, passID);
+					Statement statement = connection.createStatement();
+			         String sql;
+			         sql = "SELECT * FROM Item";
+			         ResultSet rs = statement.executeQuery(sql);
 
+			         while(rs.next()){
+			             
+			       
+			             int itemID  = rs.getInt("itemID");
+			             String itemName = rs.getString("itemName");
+			             double itemPrice = rs.getDouble("itemPrice");
+
+			             
+			             System.out.print("\nItem ID: " + itemID);
+			             System.out.print("\nItem Name: " + itemName);
+			             System.out.println("\nItem Price: " + itemPrice);
+			          }
+			         
+			  	System.out.println("\nReported All Items successfully...");
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+
+			  
+		
 					break;
 				case 5:
 					break;
