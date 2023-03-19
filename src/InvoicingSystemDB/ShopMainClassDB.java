@@ -3,6 +3,8 @@ package InvoicingSystemDB;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -245,6 +247,37 @@ public class ShopMainClassDB {
 					break;
 				case 3:
 					// Change Item Price
+
+					try {
+//					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
+//							.newInstance();
+					//DriverManager.registerDriver(driver);
+					connection = DriverManager.getConnection(url, userID, passID);
+					Statement statement = connection.createStatement();
+					
+					System.out.print("Enter Item ID you want to change its Price: ");
+		            int itemID = scanner.nextInt();
+		            
+		            System.out.print("Enter new Item Price: ");
+		            double newPrice = scanner.nextDouble();
+					
+					String sqlch = "UPDATE Item SET itemPrice = " + newPrice
+							+ " WHERE itemID = " + itemID;
+
+					PreparedStatement statement1 = connection.prepareStatement(sqlch);
+		            statement1.setDouble(1, newPrice);
+		            statement1.setInt(2, itemID);
+					
+					
+					
+					statement.executeUpdate(sqlch);
+					
+					System.out.println("updated successfully...");
+				} catch (SQLException ex) {
+					System.out.println("An error occurred while updating the item price: " + ex.getMessage());
+					// TODO: handle exception
+				}
+					
 
 					break;
 				case 4:
