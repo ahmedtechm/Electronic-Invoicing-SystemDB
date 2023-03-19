@@ -225,6 +225,22 @@ public class ShopMainClassDB {
 					break;
 				case 2:
 					// Delete Items
+					try {
+					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
+					.newInstance();
+			DriverManager.registerDriver(driver);
+			connection = DriverManager.getConnection(url, userID, passID);
+			Statement statement = connection.createStatement();
+					
+					System.out.print("Enter Item ID you want to Delete : ");
+					int delete = scanner.nextInt();
+					String sqldelete = "DELETE FROM Item WHERE itemID = "+ delete;
+					statement.executeUpdate(sqldelete);
+					
+					System.out.println("Deleted successfully...");
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 
 					break;
 				case 3:
