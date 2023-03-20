@@ -66,18 +66,18 @@ public class ShopMainClassDB {
 					String Item = "CREATE TABLE Item (" + "itemID INT PRIMARY KEY, " + " itemName VARCHAR(255), "
 							+ " itemPrice FLOAT , " + "itemQuantity INT, " + "qtyAmountPrice FLOAT  " + ")";
 
-					 statement.executeUpdate(Item);
+					// statement.executeUpdate(Item);
 
 					String Shop = "CREATE TABLE Shop (" + " telephone INT, " + " fax VARCHAR(255), "
 							+ "email VARCHAR(255), " + "webSite VARCHAR(255), " + "shopName VARCHAR(255) " + ")";
 
-					 statement.executeUpdate(Shop);
+					// statement.executeUpdate(Shop);
 
-					String Invoice = "CREATE TABLE Invoice (" + "invoiceId INT, "+ " invoiceDate int, "
+					String Invoice = "CREATE TABLE Invoice (" + "invoiceId INT, " + " invoiceDate int, "
 							+ " customerFullName VARCHAR(255), " + "phoneNumber INT, " + "numberOfItem INT, "
 							+ "totalAmount FLOAT , " + "paidAmount FLOAT , " + "balance FLOAT " + ")";
 
-					 statement.executeUpdate(Invoice);
+					// statement.executeUpdate(Invoice);
 
 					System.out.println("\nexecute completed ");
 
@@ -215,8 +215,8 @@ public class ShopMainClassDB {
 						Statement statement = connection.createStatement();
 
 						String sql1 = "INSERT INTO Item (itemID, itemName, itemPrice, itemQuantity, qtyAmountPrice) "
-								+ "VALUES(" + itemID + ",'" + itemName + "'," + itemPrice + "," + itemQuantity
-								+ "," + qtyAmountPrice + ")";
+								+ "VALUES(" + itemID + ",'" + itemName + "'," + itemPrice + "," + itemQuantity + ","
+								+ qtyAmountPrice + ")";
 
 						statement.executeUpdate(sql1);
 
@@ -229,21 +229,21 @@ public class ShopMainClassDB {
 				case 2:
 					// Delete Items
 					try {
-					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
-					.newInstance();
-			DriverManager.registerDriver(driver);
-			connection = DriverManager.getConnection(url, userID, passID);
-			Statement statement = connection.createStatement();
-					
-					System.out.print("Enter Item ID you want to Delete : ");
-					int delete = scanner.nextInt();
-					String sqldelete = "DELETE FROM Item WHERE itemID = "+ delete;
-					statement.executeUpdate(sqldelete);
-					
-					System.out.println("Deleted successfully...");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+						Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
+								.newInstance();
+						DriverManager.registerDriver(driver);
+						connection = DriverManager.getConnection(url, userID, passID);
+						Statement statement = connection.createStatement();
+
+						System.out.print("Enter Item ID you want to Delete : ");
+						int delete = scanner.nextInt();
+						String sqldelete = "DELETE FROM Item WHERE itemID = " + delete;
+						statement.executeUpdate(sqldelete);
+
+						System.out.println("Deleted successfully...");
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
 
 					break;
 				case 3:
@@ -252,64 +252,56 @@ public class ShopMainClassDB {
 					try {
 //					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
 //							.newInstance();
-					//DriverManager.registerDriver(driver);
-					connection = DriverManager.getConnection(url, userID, passID);
-					Statement statement = connection.createStatement();
-					
-					System.out.print("Enter Item ID you want to change its Price: ");
-		            int itemID = scanner.nextInt();
-		            
-		            System.out.print("Enter new Item Price: ");
-		            double newPrice = scanner.nextDouble();
-					
-					String sqlch = "UPDATE Item SET itemPrice = " + newPrice
-							+ " WHERE itemID = " + itemID;
+						// DriverManager.registerDriver(driver);
+						connection = DriverManager.getConnection(url, userID, passID);
+						Statement statement = connection.createStatement();
 
-					PreparedStatement statement1 = connection.prepareStatement(sqlch);
-		            statement1.setDouble(1, newPrice);
-		            statement1.setInt(2, itemID);
-					
-					
-					
-					statement.executeUpdate(sqlch);
-					
-					System.out.println("updated successfully...");
-				} catch (SQLException ex) {
-					System.out.println("An error occurred while updating the item price: " + ex.getMessage());
-					// TODO: handle exception
-				}
-					
+						System.out.print("Enter Item ID you want to change its Price: ");
+						int itemID = scanner.nextInt();
+
+						System.out.print("Enter new Item Price: ");
+						double newPrice = scanner.nextDouble();
+
+						String sqlch = "UPDATE Item SET itemPrice = " + newPrice + " WHERE itemID = " + itemID;
+
+						PreparedStatement statement1 = connection.prepareStatement(sqlch);
+						statement1.setDouble(1, newPrice);
+						statement1.setInt(2, itemID);
+
+						statement.executeUpdate(sqlch);
+
+						System.out.println("updated successfully...");
+					} catch (SQLException ex) {
+						System.out.println("An error occurred while updating the item price: " + ex.getMessage());
+						// TODO: handle exception
+					}
 
 					break;
 				case 4:
 					// Report All Items
 					try {
-					connection = DriverManager.getConnection(url, userID, passID);
-					Statement statement = connection.createStatement();
-			         String sql;
-			         sql = "SELECT * FROM Item";
-			         ResultSet rs = statement.executeQuery(sql);
+						connection = DriverManager.getConnection(url, userID, passID);
+						Statement statement = connection.createStatement();
+						String sql;
+						sql = "SELECT * FROM Item";
+						ResultSet rs = statement.executeQuery(sql);
 
-			         while(rs.next()){
-			             
-			       
-			             int itemID  = rs.getInt("itemID");
-			             String itemName = rs.getString("itemName");
-			             double itemPrice = rs.getDouble("itemPrice");
+						while (rs.next()) {
 
-			             
-			             System.out.print("\nItem ID: " + itemID);
-			             System.out.print("\nItem Name: " + itemName);
-			             System.out.println("\nItem Price: " + itemPrice);
-			          }
-			         
-			  	System.out.println("\nReported All Items successfully...");
+							int itemID = rs.getInt("itemID");
+							String itemName = rs.getString("itemName");
+							double itemPrice = rs.getDouble("itemPrice");
+
+							System.out.print("\nItem ID: " + itemID);
+							System.out.print("\nItem Name: " + itemName);
+							System.out.println("\nItem Price: " + itemPrice);
+						}
+
+						System.out.println("\nReported All Items successfully...");
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
 
-			  
-		
 					break;
 				case 5:
 					break;
@@ -324,7 +316,7 @@ public class ShopMainClassDB {
 					System.out.print("\nEnter Invoice ID Number : ");
 					Integer invoiceId = scanner.nextInt();
 					invoiceobj.setPhoneNumber(invoiceId);
-					
+
 					System.out.print("\nEnter Customer Full Name : ");
 					String customerFullName = scan.next();
 					invoiceobj.setCustomerFullName(customerFullName);
@@ -362,7 +354,6 @@ public class ShopMainClassDB {
 					System.out.println("Paid Amount saved : " + paidAmount);
 					System.out.println("Balance saved : " + balance);
 
-					
 					Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
 							.newInstance();
 					DriverManager.registerDriver(driver);
@@ -370,9 +361,9 @@ public class ShopMainClassDB {
 					Statement statement = connection.createStatement();
 
 					String sqlInvoice = "INSERT INTO Invoice (invoiceId, invoiceDate, customerFullName, phoneNumber, numberOfItem, totalAmount, paidAmount, balance)"
-							+ "VALUES (" + invoiceId + "," + invoiceDate + ",'" + customerFullName + "'," + phoneNumber + ","
-							+ numberOfItem + "," + totalAmount +"," + paidAmount + "," + balance + ")";
-					
+							+ "VALUES (" + invoiceId + "," + invoiceDate + ",'" + customerFullName + "'," + phoneNumber
+							+ "," + numberOfItem + "," + totalAmount + "," + paidAmount + "," + balance + ")";
+
 					statement.executeUpdate(sqlInvoice);
 
 					System.out.println("saved successfully...");
@@ -391,44 +382,68 @@ public class ShopMainClassDB {
 
 					connection = DriverManager.getConnection(url, userID, passID);
 					Statement statement = connection.createStatement();
-								
-					 String query = "SELECT * FROM Invoice";
 
-			         ResultSet resultSet = statement.executeQuery(query);
-			         
-			         // Loop through the result set and print out each invoice
-			         while(resultSet.next()) {
-			             int invoiceId = resultSet.getInt("invoice_id");
-			             String customerFullName = resultSet.getString("customer_full_name");
-			             int phoneNumber = resultSet.getInt("phone_number");
-			             int invoiceDate = resultSet.getInt("invoice_date");
-			             int numberOfItem = resultSet.getInt("number_of_item");
-			             float totalAmount = resultSet.getFloat("total_amount");
-			             float paidAmount = resultSet.getFloat("paid_amount");
-			             float balance = resultSet.getFloat("balance");
+					String query = "SELECT * FROM Invoice";
 
-			        	 
-			        	 
-			             System.out.println("Invoice ID: " + invoiceId);
-			             System.out.println("Customer Full Name: " + customerFullName);
-			             System.out.println("Phone Number: " + phoneNumber);
-			             System.out.println("Invoice Date: " + invoiceDate);
-			             System.out.println("Number of Item: " + numberOfItem);
-			             System.out.println("Total Amount: " + totalAmount);
-			             System.out.println("Paid Amount: " + paidAmount);
-			             System.out.println("Balance: " + balance);
-			         }
-			         System.out.println("\nReported All Invoice successfully...");
-			        
+					ResultSet resultSet = statement.executeQuery(query);
 
-					} catch (Exception e) {
-						// TODO: handle exception
+					// Loop through the result set and print out each invoice
+					while (resultSet.next()) {
+						int invoiceId = resultSet.getInt("invoice_id");
+						String customerFullName = resultSet.getString("customer_full_name");
+						int phoneNumber = resultSet.getInt("phone_number");
+						int invoiceDate = resultSet.getInt("invoice_date");
+						int numberOfItem = resultSet.getInt("number_of_item");
+						float totalAmount = resultSet.getFloat("total_amount");
+						float paidAmount = resultSet.getFloat("paid_amount");
+						float balance = resultSet.getFloat("balance");
+
+						System.out.println("Invoice ID: " + invoiceId);
+						System.out.println("Customer Full Name: " + customerFullName);
+						System.out.println("Phone Number: " + phoneNumber);
+						System.out.println("Invoice Date: " + invoiceDate);
+						System.out.println("Number of Item: " + numberOfItem);
+						System.out.println("Total Amount: " + totalAmount);
+						System.out.println("Paid Amount: " + paidAmount);
+						System.out.println("Balance: " + balance);
 					}
+					System.out.println("\nReported All Invoice successfully...");
 
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 
 				break;
 			case 6:
 				// Search (1) Invoice
+				try {
+
+					connection = DriverManager.getConnection(url, userID, passID);
+					Statement statement = connection.createStatement();
+				    
+				    System.out.print("Enter Invoice ID to search for: ");
+				    int invoiceId = scanner.nextInt();
+
+				    String sqlSearch = "SELECT * FROM Invoice WHERE invoiceId = " + invoiceId;
+
+				    ResultSet resultSet = statement.executeQuery(sqlSearch);
+
+				    // print out the results
+				    while (resultSet.next()) {
+				        System.out.println("Invoice ID: " + resultSet.getInt("invoiceId"));
+				        System.out.println("Invoice Date: " + resultSet.getInt("invoiceDate"));
+				        System.out.println("Customer Full Name: " + resultSet.getString("customerFullName"));
+				        System.out.println("Customer Phone Number: " + resultSet.getInt("phoneNumber"));
+				        System.out.println("Number of Item: " + resultSet.getInt("numberOfItem"));
+				        System.out.println("Total Amount: " + resultSet.getFloat("totalAmount"));
+				        System.out.println("Paid Amount: " + resultSet.getFloat("paidAmount"));
+				        System.out.println("Balance: " + resultSet.getFloat("balance"));
+				    }
+
+
+				} catch (Exception e) {
+				    e.printStackTrace();
+				}
 
 				break;
 			case 7:
