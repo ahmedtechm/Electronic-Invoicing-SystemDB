@@ -2,6 +2,7 @@ package InvoicingSystemDB;
 
 public class InvoiceDB {
 
+	private int invoiceId;
 	private String customerFullName;
 	private int phoneNumber;
 	private int invoiceDate;
@@ -11,6 +12,14 @@ public class InvoiceDB {
 	private float balance;
 
 	ShopDB shopobj = new ShopDB();
+
+	public int getInvoiceId() {
+		return invoiceId;
+	}
+
+	public void setInvoiceId(int invoiceId) {
+		this.invoiceId = invoiceId;
+	}
 
 	public String getCustomerFullName() {
 		return customerFullName;
@@ -66,6 +75,14 @@ public class InvoiceDB {
 
 	public void setBalance(float balance) {
 		this.balance = balance;
+	}
+
+	public ShopDB getShopobj() {
+		return shopobj;
+	}
+
+	public void setShopobj(ShopDB shopobj) {
+		this.shopobj = shopobj;
 	}
 
 }

@@ -66,18 +66,18 @@ public class ShopMainClassDB {
 					String Item = "CREATE TABLE Item (" + "itemID INT PRIMARY KEY, " + " itemName VARCHAR(255), "
 							+ " itemPrice FLOAT , " + "itemQuantity INT, " + "qtyAmountPrice FLOAT  " + ")";
 
-					// statement.executeUpdate(Item);
+					 statement.executeUpdate(Item);
 
 					String Shop = "CREATE TABLE Shop (" + " telephone INT, " + " fax VARCHAR(255), "
 							+ "email VARCHAR(255), " + "webSite VARCHAR(255), " + "shopName VARCHAR(255) " + ")";
 
-					// statement.executeUpdate(Shop);
+					 statement.executeUpdate(Shop);
 
-					String Invoice = "CREATE TABLE Invoice (" + " invoiceDate int, "
+					String Invoice = "CREATE TABLE Invoice (" + "invoiceId INT, "+ " invoiceDate int, "
 							+ " customerFullName VARCHAR(255), " + "phoneNumber INT, " + "numberOfItem INT, "
 							+ "totalAmount FLOAT , " + "paidAmount FLOAT , " + "balance FLOAT " + ")";
 
-					// statement.executeUpdate(Invoice);
+					 statement.executeUpdate(Invoice);
 
 					System.out.println("\nexecute completed ");
 
@@ -321,6 +321,10 @@ public class ShopMainClassDB {
 				// Create New Invoice
 				try {
 
+					System.out.print("\nEnter Invoice ID Number : ");
+					Integer invoiceId = scanner.nextInt();
+					invoiceobj.setPhoneNumber(invoiceId);
+					
 					System.out.print("\nEnter Customer Full Name : ");
 					String customerFullName = scan.next();
 					invoiceobj.setCustomerFullName(customerFullName);
@@ -349,6 +353,7 @@ public class ShopMainClassDB {
 					float balance = scanner.nextFloat();
 					invoiceobj.setBalance(balance);
 
+					System.out.println("Customer Phone Number saved : " + invoiceId);
 					System.out.println("Customer Full Name saved : " + customerFullName);
 					System.out.println("Customer Phone Number saved : " + phoneNumber);
 					System.out.println("Invoice Date saved : " + invoiceDate);
@@ -364,8 +369,8 @@ public class ShopMainClassDB {
 					connection = DriverManager.getConnection(url, userID, passID);
 					Statement statement = connection.createStatement();
 
-					String sqlInvoice = "INSERT INTO Invoice (invoiceDate, customerFullName, phoneNumber, numberOfItem, totalAmount, paidAmount, balance)"
-							+ "VALUES (" + invoiceDate + ",'" + customerFullName + "'," + phoneNumber + ","
+					String sqlInvoice = "INSERT INTO Invoice (invoiceId, invoiceDate, customerFullName, phoneNumber, numberOfItem, totalAmount, paidAmount, balance)"
+							+ "VALUES (" + invoiceId + "," + invoiceDate + ",'" + customerFullName + "'," + phoneNumber + ","
 							+ numberOfItem + "," + totalAmount +"," + paidAmount + "," + balance + ")";
 					
 					statement.executeUpdate(sqlInvoice);
