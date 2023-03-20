@@ -387,6 +387,44 @@ public class ShopMainClassDB {
 				break;
 			case 5:
 				// Report: All Invoices
+				try {
+
+					connection = DriverManager.getConnection(url, userID, passID);
+					Statement statement = connection.createStatement();
+								
+					 String query = "SELECT * FROM Invoice";
+
+			         ResultSet resultSet = statement.executeQuery(query);
+			         
+			         // Loop through the result set and print out each invoice
+			         while(resultSet.next()) {
+			             int invoiceId = resultSet.getInt("invoice_id");
+			             String customerFullName = resultSet.getString("customer_full_name");
+			             int phoneNumber = resultSet.getInt("phone_number");
+			             int invoiceDate = resultSet.getInt("invoice_date");
+			             int numberOfItem = resultSet.getInt("number_of_item");
+			             float totalAmount = resultSet.getFloat("total_amount");
+			             float paidAmount = resultSet.getFloat("paid_amount");
+			             float balance = resultSet.getFloat("balance");
+
+			        	 
+			        	 
+			             System.out.println("Invoice ID: " + invoiceId);
+			             System.out.println("Customer Full Name: " + customerFullName);
+			             System.out.println("Phone Number: " + phoneNumber);
+			             System.out.println("Invoice Date: " + invoiceDate);
+			             System.out.println("Number of Item: " + numberOfItem);
+			             System.out.println("Total Amount: " + totalAmount);
+			             System.out.println("Paid Amount: " + paidAmount);
+			             System.out.println("Balance: " + balance);
+			         }
+			         System.out.println("\nReported All Invoice successfully...");
+			        
+
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+
 
 				break;
 			case 6:
