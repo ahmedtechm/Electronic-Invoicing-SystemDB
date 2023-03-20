@@ -17,8 +17,8 @@ public class ShopMainClassDB {
 		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=InvoicingDB;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 
-		// String user = "sa";
-		// String pass = "root";
+		 String user = "sa";
+		 String pass = "root";
 
 		ArrayList<ItemDB> itemList = new ArrayList<ItemDB>();
 
@@ -373,7 +373,26 @@ public class ShopMainClassDB {
 
 				break;
 			case 4:
-				// Report: Statistics
+				// Report: Statistics(No Of Items, No of Invoices, Total Sales) 
+				
+				  try {
+					  connection = DriverManager.getConnection(url, userID, passID);
+						Statement statement = connection.createStatement();
+
+					String sql = "SELECT COUNT(DISTINCT itemID) AS NumberOfItems, COUNT(DISTINCT invoiceId) AS NumberOfInvoice, SUM(totalAmount) AS total_sales FROM Item, Invoice ";
+					
+					ResultSet result = statement.executeQuery(sql);
+					while (result.next()) {
+						String NumberOfInvoice = result.getString("NumberOfInvoice");
+						String NumberOfItems = result.getString("NumberOfItems");
+						String TotalSales = result.getString("total_sales");
+
+						System.out.println("Number of Invoice : " + NumberOfInvoice + ", Number of Items : " + NumberOfItems
+								+ ", Total Sales : " + TotalSales);
+						
+					}} catch (SQLException e) {
+					         e.printStackTrace();
+					      }
 
 				break;
 			case 5:
@@ -420,29 +439,28 @@ public class ShopMainClassDB {
 
 					connection = DriverManager.getConnection(url, userID, passID);
 					Statement statement = connection.createStatement();
-				    
-				    System.out.print("Enter Invoice ID to search for: ");
-				    int invoiceId = scanner.nextInt();
 
-				    String sqlSearch = "SELECT * FROM Invoice WHERE invoiceId = " + invoiceId;
+					System.out.print("Enter Invoice ID to search for: ");
+					int invoiceId = scanner.nextInt();
 
-				    ResultSet resultSet = statement.executeQuery(sqlSearch);
+					String sqlSearch = "SELECT * FROM Invoice WHERE invoiceId = " + invoiceId;
 
-				    // print out the results
-				    while (resultSet.next()) {
-				        System.out.println("Invoice ID: " + resultSet.getInt("invoiceId"));
-				        System.out.println("Invoice Date: " + resultSet.getInt("invoiceDate"));
-				        System.out.println("Customer Full Name: " + resultSet.getString("customerFullName"));
-				        System.out.println("Customer Phone Number: " + resultSet.getInt("phoneNumber"));
-				        System.out.println("Number of Item: " + resultSet.getInt("numberOfItem"));
-				        System.out.println("Total Amount: " + resultSet.getFloat("totalAmount"));
-				        System.out.println("Paid Amount: " + resultSet.getFloat("paidAmount"));
-				        System.out.println("Balance: " + resultSet.getFloat("balance"));
-				    }
+					ResultSet resultSet = statement.executeQuery(sqlSearch);
 
+					// print out the results
+					while (resultSet.next()) {
+						System.out.println("Invoice ID: " + resultSet.getInt("invoiceId"));
+						System.out.println("Invoice Date: " + resultSet.getInt("invoiceDate"));
+						System.out.println("Customer Full Name: " + resultSet.getString("customerFullName"));
+						System.out.println("Customer Phone Number: " + resultSet.getInt("phoneNumber"));
+						System.out.println("Number of Item: " + resultSet.getInt("numberOfItem"));
+						System.out.println("Total Amount: " + resultSet.getFloat("totalAmount"));
+						System.out.println("Paid Amount: " + resultSet.getFloat("paidAmount"));
+						System.out.println("Balance: " + resultSet.getFloat("balance"));
+					}
 
 				} catch (Exception e) {
-				    e.printStackTrace();
+					e.printStackTrace();
 				}
 
 				break;
