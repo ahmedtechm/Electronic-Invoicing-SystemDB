@@ -17,8 +17,8 @@ public class ShopMainClassDB {
 		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=InvoicingDB;" + "encrypt=true;"
 				+ "trustServerCertificate=true";
 
-		 String user = "sa";
-		 String pass = "root";
+		String user = "sa";
+		String pass = "root";
 
 		ArrayList<ItemDB> itemList = new ArrayList<ItemDB>();
 
@@ -35,6 +35,16 @@ public class ShopMainClassDB {
 		boolean exit = false;
 
 		InvoiceDB invoiceobj = new InvoiceDB();
+
+		int createTablesCount = 0;
+		int shopSettingsCount = 0;
+		int manageItemsCount = 0;
+		int createInvoiceCount = 0;
+		int statisticsCount = 0;
+		int allInvoicesCount = 0;
+		int searchInvoiceCount = 0;
+		int programStatsCount = 0;
+		int exitCount = 0;
 
 		while (!exit) {
 			// Application Main Menu
@@ -84,6 +94,7 @@ public class ShopMainClassDB {
 				} catch (Exception ex) {
 					System.err.println(ex);
 				}
+				createTablesCount++;
 
 			case 1:
 				// Shop Settings Menu
@@ -92,6 +103,8 @@ public class ShopMainClassDB {
 				System.out.println("3. Set Invoice Header");
 				System.out.println("4. Go Back");
 				System.out.print("Enter your choice: ");
+
+				shopSettingsCount++;
 
 				int subChoice = scanner.nextInt();
 				switch (subChoice) {
@@ -172,6 +185,8 @@ public class ShopMainClassDB {
 				System.out.println("4. Report All Items");
 				System.out.println("5. Go Back");
 				System.out.print("Enter your choice: ");
+
+				manageItemsCount++;
 
 				subChoice = scanner.nextInt();
 				switch (subChoice) {
@@ -370,29 +385,32 @@ public class ShopMainClassDB {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				createInvoiceCount++;
 
 				break;
 			case 4:
-				// Report: Statistics(No Of Items, No of Invoices, Total Sales) 
-				
-				  try {
-					  connection = DriverManager.getConnection(url, userID, passID);
-						Statement statement = connection.createStatement();
+				// Report: Statistics(No Of Items, No of Invoices, Total Sales)
+
+				try {
+					connection = DriverManager.getConnection(url, userID, passID);
+					Statement statement = connection.createStatement();
 
 					String sql = "SELECT COUNT(DISTINCT itemID) AS NumberOfItems, COUNT(DISTINCT invoiceId) AS NumberOfInvoice, SUM(totalAmount) AS total_sales FROM Item, Invoice ";
-					
+
 					ResultSet result = statement.executeQuery(sql);
 					while (result.next()) {
 						String NumberOfInvoice = result.getString("NumberOfInvoice");
 						String NumberOfItems = result.getString("NumberOfItems");
 						String TotalSales = result.getString("total_sales");
 
-						System.out.println("Number of Invoice : " + NumberOfInvoice + ", Number of Items : " + NumberOfItems
-								+ ", Total Sales : " + TotalSales);
-						
-					}} catch (SQLException e) {
-					         e.printStackTrace();
-					      }
+						System.out.println("Number of Invoice : " + NumberOfInvoice + ", Number of Items : "
+								+ NumberOfItems + ", Total Sales : " + TotalSales);
+
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				statisticsCount++;
 
 				break;
 			case 5:
@@ -431,6 +449,7 @@ public class ShopMainClassDB {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+				allInvoicesCount++;
 
 				break;
 			case 6:
@@ -462,14 +481,30 @@ public class ShopMainClassDB {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				searchInvoiceCount++;
 
 				break;
 			case 7:
 				// Program Statistics
 
+				System.out.println("//---------Program Statistics:-----------//");
+				System.out.println("0- Create Tables: " + createTablesCount);
+				System.out.println("1- Shop Settings: " + shopSettingsCount);
+				System.out.println("2- Manage Shop Items: " + manageItemsCount);
+				System.out.println("3- Create New Invoice: " + createInvoiceCount);
+				System.out.println("4- Report: Statistics: " + statisticsCount);
+				System.out.println("5- Report: All Invoices: " + allInvoicesCount);
+				System.out.println("6- Search (1) Invoice: " + searchInvoiceCount);
+				System.out.println("7- Program Statistics: " + programStatsCount);
+				System.out.println("8- Exit: " + exitCount);
+
+				programStatsCount++;
+
 				break;
 
 			case 8:
+				exitCount++;
+
 				System.out.print("Are you sure you want to exit? (yes/no): ");
 				String confirm = scanner.next();
 				if (confirm.equalsIgnoreCase("yes")) {
