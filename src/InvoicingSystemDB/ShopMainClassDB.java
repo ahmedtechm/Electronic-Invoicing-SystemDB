@@ -122,14 +122,14 @@ public class ShopMainClassDB {
 				case 1:
 					// Load Data (Items and invoices)
 					System.out.println("Loading data...");
-					
+
 					try {
 
 						connection = DriverManager.getConnection(url, userID, passID);
 						Statement statement = connection.createStatement();
 
 						String query = "SELECT * FROM Item, Invoice";
-						
+
 						ResultSet resultSet = statement.executeQuery(query);
 
 						// Loop through the result set and print out each invoice
@@ -137,7 +137,7 @@ public class ShopMainClassDB {
 							int itemID = resultSet.getInt("itemID");
 							String itemName = resultSet.getString("itemName");
 							double itemPrice = resultSet.getDouble("itemPrice");
-							
+
 							int invoiceId = resultSet.getInt("invoiceId");
 							String customerFullName = resultSet.getString("customerFullName");
 							int phoneNumber = resultSet.getInt("phoneNumber");
@@ -146,11 +146,11 @@ public class ShopMainClassDB {
 							float totalAmount = resultSet.getFloat("totalAmount");
 							float paidAmount = resultSet.getFloat("paidAmount");
 							float balance = resultSet.getFloat("balance");
-							
+
 							System.out.print("\nItem ID: " + itemID);
 							System.out.print("\nItem Name: " + itemName);
 							System.out.println("\nItem Price: " + itemPrice);
-							
+
 							System.out.println("Invoice ID: " + invoiceId);
 							System.out.println("Customer Full Name: " + customerFullName);
 							System.out.println("Phone Number: " + phoneNumber);
