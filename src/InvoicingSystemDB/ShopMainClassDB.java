@@ -24,7 +24,7 @@ public class ShopMainClassDB {
 
 		Scanner scan = new Scanner(System.in).useDelimiter("\n");
 		Scanner scanner = new Scanner(System.in);
-		
+
 		System.out.println("Connecting to database...");
 
 		boolean passwordCondition = true;
@@ -33,16 +33,16 @@ public class ShopMainClassDB {
 			userID = scanner.nextLine();
 			System.out.println("Enter User password: ");
 			passID = scanner.nextLine();
-				
+
 			if (userID.equals("sa") && passID.equals("root")) {
 				passwordCondition = false;
 			} else {
-				System.out.println("Wrong username and password");
+				System.out.println("Wrong username or password");
 			}
 		}
 
 		Connection connection = null;
-		
+
 		boolean exit = false;
 
 		InvoiceDB invoiceobj = new InvoiceDB();
@@ -122,6 +122,49 @@ public class ShopMainClassDB {
 				case 1:
 					// Load Data (Items and invoices)
 					System.out.println("Loading data...");
+					
+					try {
+
+						connection = DriverManager.getConnection(url, userID, passID);
+						Statement statement = connection.createStatement();
+
+						String query = "SELECT * FROM Item, Invoice";
+						
+						ResultSet resultSet = statement.executeQuery(query);
+
+						// Loop through the result set and print out each invoice
+						while (resultSet.next()) {
+							int itemID = resultSet.getInt("itemID");
+							String itemName = resultSet.getString("itemName");
+							double itemPrice = resultSet.getDouble("itemPrice");
+							
+							int invoiceId = resultSet.getInt("invoiceId");
+							String customerFullName = resultSet.getString("customerFullName");
+							int phoneNumber = resultSet.getInt("phoneNumber");
+							int invoiceDate = resultSet.getInt("invoiceDate");
+							int numberOfItem = resultSet.getInt("numberOfItem");
+							float totalAmount = resultSet.getFloat("totalAmount");
+							float paidAmount = resultSet.getFloat("paidAmount");
+							float balance = resultSet.getFloat("balance");
+							
+							System.out.print("\nItem ID: " + itemID);
+							System.out.print("\nItem Name: " + itemName);
+							System.out.println("\nItem Price: " + itemPrice);
+							
+							System.out.println("Invoice ID: " + invoiceId);
+							System.out.println("Customer Full Name: " + customerFullName);
+							System.out.println("Phone Number: " + phoneNumber);
+							System.out.println("Invoice Date: " + invoiceDate);
+							System.out.println("Number of Item: " + numberOfItem);
+							System.out.println("Total Amount: " + totalAmount);
+							System.out.println("Paid Amount: " + paidAmount);
+							System.out.println("Balance: " + balance);
+						}
+						System.out.println("\nLoaded All Data Successfully...");
+
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
 
 					break;
 
@@ -437,16 +480,16 @@ public class ShopMainClassDB {
 
 					// Loop through the result set and print out each invoice
 					while (resultSet.next()) {
-						int invoiceId = resultSet.getInt("invoice_id");
-						String customerFullName = resultSet.getString("customer_full_name");
-						int phoneNumber = resultSet.getInt("phone_number");
-						int invoiceDate = resultSet.getInt("invoice_date");
-						int numberOfItem = resultSet.getInt("number_of_item");
-						float totalAmount = resultSet.getFloat("total_amount");
-						float paidAmount = resultSet.getFloat("paid_amount");
+						int invoiceId = resultSet.getInt("invoiceId");
+						String customerFullName = resultSet.getString("customerFullName");
+						int phoneNumber = resultSet.getInt("phoneNumber");
+						int invoiceDate = resultSet.getInt("invoiceDate");
+						int numberOfItem = resultSet.getInt("numberOfItem");
+						float totalAmount = resultSet.getFloat("totalAmount");
+						float paidAmount = resultSet.getFloat("paidAmount");
 						float balance = resultSet.getFloat("balance");
 
-						System.out.println("Invoice ID: " + invoiceId);
+						System.out.println("\nInvoice ID: " + invoiceId);
 						System.out.println("Customer Full Name: " + customerFullName);
 						System.out.println("Phone Number: " + phoneNumber);
 						System.out.println("Invoice Date: " + invoiceDate);
